@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:medhealth/theme.dart';
 
 class CardProduct extends StatelessWidget {
@@ -9,6 +10,7 @@ class CardProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final priceFormat = NumberFormat("#,##0", "EN_US");
     return Container(
       decoration: BoxDecoration(
         color: whiteColor, borderRadius:BorderRadius.circular(10),
@@ -37,7 +39,7 @@ class CardProduct extends StatelessWidget {
             ),
 
             Text(
-              price, 
+              "Rp "+ priceFormat.format(int.parse(price)),
               style: boldTextStyle),
 
             

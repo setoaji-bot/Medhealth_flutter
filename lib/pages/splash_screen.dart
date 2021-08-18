@@ -1,10 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:medhealth/network/model/pref_profile_model.dart';
+import 'package:medhealth/pages/main_page.dart';
 import 'package:medhealth/pages/register_page.dart';
 import 'package:medhealth/widget/general_logo_space.dart';
 import 'package:medhealth/widget/widget_ilustration.dart';
 import 'package:medhealth/widget/button_primary.dart';
+import 'package:medhealth/pages/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class  SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget{
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class  _SplashScreenState extends State<SplashScreen> {
+  String userID;
+  getPref() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    setState(() {
+          userID = sharedPreferences.getString(PrefProfile.idUser);
+          userID == null ? sessionLogout() : sessionLogin();
+        });
+  }
+
+  sessionLogout(){}
+  sessionLogin(){
+    Navigator.pushReplacement(
+      context,  MaterialPageRoute(builder: (context) => MainPages()));
+  }
+  
+  @override
+  void initState(){
+    super.initState();
+    getPref();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +53,7 @@ class  SplashScreen extends StatelessWidget {
                 text: "GET STARTED",
                 onTap: (){
                   Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => RegisterPages()));
+                  MaterialPageRoute(builder: (context) => LoginPages()));
                 },
                 ),
               ),

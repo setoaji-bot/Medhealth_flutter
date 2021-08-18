@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:medhealth/pages/home_page.dart';
 import 'package:medhealth/pages/login_page.dart';
 import 'package:medhealth/pages/main_page.dart';
 import 'package:medhealth/pages/splash_screen.dart';
@@ -27,7 +28,7 @@ class  MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: greenColor),
-      home: MainPages(),
+      home: LoginPages(),
       
     );
   }
